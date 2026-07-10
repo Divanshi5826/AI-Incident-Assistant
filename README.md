@@ -175,6 +175,6 @@ Example Response
 
 ## 👨‍💻 Author
 
-**Your Name**
+Divanshi
 
 Built as a portfolio project to demonstrate practical implementation of RAG, LangGraph, FastAPI, React, and Generative AI.
