@@ -1,91 +1,180 @@
-# AI Incident Assistant
+# 🤖 IncidentIQ
+AI Incident Assistant is an AI-powered incident analysis system that helps troubleshoot common software incidents using **Retrieval-Augmented Generation (RAG)**.
 
-AI Incident Assistant is a simple, interview-friendly project for analyzing software incidents. This repository is intentionally initialized with only the backend foundation so it stays easy to explain and extend in one week.
+The application retrieves relevant troubleshooting documents from a vector database and generates context-aware responses using **Google Gemini**.
 
-## What is included now
+---
 
-- `backend/` FastAPI application
-- CORS enabled for future local frontend development
-- Minimal configuration with `python-dotenv`
-- Empty `frontend/` folder reserved for later work
+## 🚀 Features
 
-## Backend structure
+- AI-powered incident analysis
+- Retrieval-Augmented Generation (RAG)
+- Semantic Search using Vector Embeddings
+- LangGraph workflow orchestration
+- ChromaDB Vector Database
+- Google Gemini integration
+- FastAPI backend
+- React + TailwindCSS frontend
+- Source-aware responses
+- Simple and modular architecture
 
-- `backend/app.py` - FastAPI entrypoint
-- `backend/config.py` - Environment-based settings
-- `backend/requirements.txt` - Python dependencies
-- `backend/.env.example` - Sample environment variables
-- `backend/.gitignore` - Python and local environment ignores
+---
 
-## Run the backend
+## 🛠 Tech Stack
 
-1. Create a virtual environment.
-2. Install dependencies from `backend/requirements.txt`.
-3. Copy `backend/.env.example` to `backend/.env`.
-4. Start the API with Uvicorn.
+**Frontend**
+- React
+- Tailwind CSS
+- Vite
 
-Example:
+**Backend**
+- FastAPI
+- Python
+
+**AI / LLM**
+- Google Gemini API
+- LangChain
+- LangGraph
+
+**Vector Database**
+- ChromaDB
+
+**Embeddings**
+- sentence-transformers (all-MiniLM-L6-v2)
+
+---
+
+## 🏗 Project Architecture
+
+```
+User
+   │
+   ▼
+React Frontend
+   │
+   ▼
+FastAPI
+   │
+   ▼
+LangGraph
+   │
+   ├── Retrieve Node
+   └── Generate Node
+   │
+   ▼
+ChromaDB (Vector Search)
+   │
+   ▼
+Google Gemini
+   │
+   ▼
+AI Response
+```
+
+---
+
+## 📂 Knowledge Base
+
+The project uses markdown documents as its knowledge base.
+
+- authentication.md
+- database.md
+- deployment.md
+- redis.md
+- server.md
+
+These documents are chunked, embedded, indexed in ChromaDB, and retrieved using semantic similarity.
+
+---
+
+## ⚙️ Setup
+
+### Clone Repository
+
+```bash
+git clone <repository-url>
+cd AI-Incident-Assistant
+```
+
+### Backend
 
 ```bash
 cd backend
-pip install -r requirements.txt
-uvicorn app:app --reload
-```
 
-## Health check
-
-Open `GET /` and the API returns:
-
-```json
-{
-  "status": "running",
-  "project": "AI Incident Assistant"
-}
-```
-
-## Notes
-
-- The frontend is intentionally not implemented yet.
-- RAG, LangGraph, Gemini, and vector search are not added in this initialization step.
-
-## Running the Project
-
-1. Create a virtual environment.
-2. Install requirements.
-3. Add GOOGLE_API_KEY in backend/.env.
-4. Run the API server.
-
-Example:
-
-```bash
-cd backend
 python -m venv .venv
-# Windows PowerShell
+
+# Windows
 .\.venv\Scripts\Activate.ps1
+
 pip install -r requirements.txt
+```
+
+Create a `.env` file inside the backend folder.
+
+```env
+GOOGLE_API_KEY=YOUR_GOOGLE_API_KEY
+```
+
+Run the backend
+
+```bash
 uvicorn app:app --reload
 ```
 
-API Endpoint:
+---
 
-POST /ask
+### Frontend
 
-Example request:
+```bash
+cd frontend
+
+npm install
+
+npm run dev
+```
+
+---
+
+## 📌 API Endpoint
+
+### POST `/ask`
+
+Example Request
 
 ```json
 {
-  "query":"Login API returning 401"
+  "query": "Login API returning 401 Unauthorized"
 }
 ```
 
-Example response:
+Example Response
 
 ```json
 {
-  "question":"Login API returning 401",
-  "answer":"...",
-  "sources":[
+  "question": "Login API returning 401 Unauthorized",
+  "answer": "...",
+  "sources": [
     "authentication.md"
   ]
 }
 ```
+
+---
+
+
+## 🔮 Future Improvements
+
+- Conversation memory
+- PDF knowledge base support
+- Multiple LLM providers
+- User authentication
+- Admin dashboard
+- Cloud deployment
+
+---
+
+## 👨‍💻 Author
+
+**Your Name**
+
+Built as a portfolio project to demonstrate practical implementation of RAG, LangGraph, FastAPI, React, and Generative AI.
